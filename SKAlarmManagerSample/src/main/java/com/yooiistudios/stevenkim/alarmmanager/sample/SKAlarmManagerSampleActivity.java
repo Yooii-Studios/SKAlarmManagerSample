@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.yooiistudios.stevenkim.alarmmanager.R;
 import com.yooiistudios.stevenkim.alarmmanager.SKAlarmManager;
+import com.yooiistudios.stevenkim.sample.alarmmanager.R;
 
 import java.util.Calendar;
 
