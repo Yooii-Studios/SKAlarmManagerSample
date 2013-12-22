@@ -1,0 +1,4 @@
+include 'SKAlarmManagerSample', ':libraries:SKAlarmManager'
+
+// project (':SKAlarmManager').projectDir = new File(settingsDir, '../SKAlarmManagerSample/SKAlarmManager')
+
