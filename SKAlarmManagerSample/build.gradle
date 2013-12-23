@@ -10,6 +10,10 @@ apply plugin: 'android'
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        url 'https://oss.sonatype.org/content/repositories/central_bundles-1595/'
+    }
 }
 
 android {
@@ -33,4 +37,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile project(':libraries:SKAlarmManager')
+//    compile 'com.yooiistudios.stevenkim:alarm-manager:0.2.2'
 }
