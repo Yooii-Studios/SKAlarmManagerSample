@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
+        classpath 'com.android.tools.build:gradle:0.7.1' // 0.7.+ 로 해서 0.7.2 버전에 버그가 있음
     }
 }
 apply plugin: 'android'
@@ -12,7 +12,7 @@ repositories {
     mavenCentral()
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots/'
-        url 'https://oss.sonatype.org/content/repositories/central_bundles-1595/'
+        url 'https://oss.sonatype.org/content/repositories/releases/'
     }
 }
 
@@ -37,5 +37,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
     compile project(':libraries:SKAlarmManager')
-//    compile 'com.yooiistudios.stevenkim:alarm-manager:0.2.2'
+//    compile 'com.yooiistudios:alarm-manager:0.2.3@aar'
 }

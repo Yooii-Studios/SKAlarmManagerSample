@@ -16,6 +16,7 @@ import java.util.Calendar;
 public class SKAlarmManager {
 
     public static final String ALARM_ID = "ALARM_ID";
+    public static final String ALARM_UNIQUE_ID = "ALARM_UNIQUE_ID";
     private AlarmManager alarmManager;
 
     /**
@@ -42,17 +43,19 @@ public class SKAlarmManager {
     /**
      * Add an alarm into AlarmManager
      *
-     * @param alarmId  unique Id to distinguish between alarms
+     * @param alarmUniqueId  unique Id to distinguish between alarms
+     * @param alarmId  this is used for repeated alarms in one alarm to distinguish each others
      * @param calendar Calendar instance to set into an alarm
      * @param context used to get AlarmManager
      * @param activity Class to insert into Intent and used as Context
      */
-    public static void setAlarm(int alarmId, Calendar calendar, Context context, Class activity) {
+    public static void setAlarm(int alarmUniqueId, int alarmId, Calendar calendar, Context context, Class activity) {
         AlarmManager alarmManager = SKAlarmManager.getAlarmManager(context);
 
         Intent intent = new Intent(context, activity);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(ALARM_UNIQUE_ID, alarmUniqueId);
         intent.putExtra(ALARM_ID, alarmId);
 
         PendingIntent pendingIntent =
@@ -91,9 +94,12 @@ public class SKAlarmManager {
         newCalendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
         newCalendar.set(Calendar.SECOND, 0);
 
-        if (calendar.getTimeInMillis() <= Calendar.getInstance().getTimeInMillis()) {
+        if (calendar.before(newCalendar)) {
             newCalendar.add(Calendar.DATE, 1);
+        } else {
+            return calendar;
         }
+
         return newCalendar;
     }
 }
