@@ -4,9 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -91,16 +89,15 @@ public class SKAlarmManager {
      * @return Calendar
      */
     public static Calendar adjustCalendar(Calendar calendar) {
-        Calendar newCalendar = Calendar.getInstance();
-        newCalendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
-        newCalendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
-        newCalendar.set(Calendar.SECOND, 0);
-
-        if (newCalendar.before(Calendar.getInstance())) {
+        if (calendar.before(Calendar.getInstance())) {
+            Calendar newCalendar = Calendar.getInstance();
+            newCalendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
+            newCalendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
+            newCalendar.set(Calendar.SECOND, 0);
             newCalendar.add(Calendar.DATE, 1);
+            return newCalendar;
         } else {
             return calendar;
         }
-        return newCalendar;
     }
 }
